@@ -1,0 +1,15 @@
+.btn-min-width{min-width:168px}p{margin-bottom:10px}
+.image-upload-icon{background-image:url('../images/icons/image-upload.svg');width:52px;height:46px;background-repeat:no-repeat;position:absolute;top:50px;left:50px}
+.custom-checkbox label{background:#f4f4f4;border-radius:3px;padding:7px 15px;font-weight:400;margin:0 10px 10px 0;cursor:pointer}
+.custom-checkbox input[type=checkbox]:checked+label{background:#e682ae;color:#fff}
+.custom-checkbox input[type=radio],.custom-checkbox input[type=checkbox]{opacity:0;position:absolute;width:25px;height:25px}
+.icon-plus{background-image:url('../images/icons/add-big.svg');background-repeat:no-repeat;background-position:center}
+.icon-small-plus{background-image:url('../images/icons/plus.svg');background-repeat:no-repeat;background-position:center}
+.icon-cross{background-image:url('../images/icons/cross.svg');background-repeat:no-repeat;background-position:center}
+.icon-pdf{background-image:url('../images/icons/pdf.svg');background-repeat:no-repeat;background-position:center}
+.icon-star{background-image:url('../images/icons/star.svg');background-repeat:no-repeat;background-position:center}
+.icon-checked{background-image:url('../images/icons/checked.svg');background-repeat:no-repeat;background-position:center}
+.icon-check{display:none;width:45px;height:45px;border-radius:50%;background-color:#0fa05b;position:absolute;top:50px;left:50px;font-size:25px;color:#fff;text-align:center;line-height:50px}
+.fc-event-container .fc-day-grid-event{border-radius:3px;color:#000000 !important;font-size:12px;padding:5px 0}
+.fc td.fc-today .fc-day-number{background-color:rgba(15,160,91,0.1);color:#0fa05b;border-radius:50%;padding:5px;width:18px;height:18px;text-align:center;line-height:1.4}
+.fc-toolbar.fc-header-toolbar{display:none}

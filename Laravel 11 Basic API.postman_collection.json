@@ -1,0 +1,3271 @@
+{
+	"info": {
+		"_postman_id": "2d4fffb7-ab56-4b89-a338-20f7baa1ad22",
+		"name": "Laravel 11 Basic API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18896697",
+		"_collection_link": "https://lively-astronaut-77333.postman.co/workspace/Nemo%252FAquinas%252FTeachers-Things-wo~41fa178e-62b3-43b7-bd86-dc708673317a/collection/18896697-2d4fffb7-ab56-4b89-a338-20f7baa1ad22?action=share&source=collection_link&creator=18896697"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"user\",\r\n    \"email\": \"user@yopmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": \"+91\",\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"user\",\r\n    \"email\": \"user@yopmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": \"+91\",\r\n    \"phone_number\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:29:02 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:29:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Registration has been completed successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 3,\n            \"role_id\": 2,\n            \"name\": \"user\",\n            \"email\": \"user@yopmail.com\",\n            \"country_code\": \"+91\",\n            \"phone_number\": \"123456789\",\n            \"is_complete_profile\": 0\n        },\n        \"token\": \"2|LSBJT4B2tHo1NPLFIxAXxp6pP3XlVwylEW08NP5If7d1b4ac\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login with Phone",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code===200){\r",
+									"    pm.collectionVariables.set('authtoken',pm.response.json().result.token)\r",
+									"}\r",
+									"\r",
+									"// platform - android or iOS"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": "android or iOS",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Language",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country_code\": \"+91\",\r\n    \"phone_number\": \"9876543211\",\r\n    \"fcm_token\": \"\",\r\n    \"platform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"description": "android or iOS",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Language",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"country_code\": \"+91\",\r\n    \"phone_number\": \"9876543210\",\r\n    \"fcm_token\": \"\",\r\n    \"platform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 29 Jan 2025 05:17:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Logged in successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 4,\n            \"role_id\": 2,\n            \"name\": \"CK\",\n            \"email\": \"ckk@gmail.com\",\n            \"country_code\": \"+91\",\n            \"phone_number\": \"9876543210\",\n            \"is_complete_profile\": 1,\n            \"location\": \"india\",\n            \"gender\": 1\n        },\n        \"token\": \"2|g0gXd4nwUkdecFAO9bxIzBDx0Cwh61vwGYS9DPlHd690e6c3\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login with email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code===200){\r",
+									"    pm.collectionVariables.set('authtoken',pm.response.json().result.token)\r",
+									"}\r",
+									"\r",
+									"// platform - android or iOS"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": "android or iOS",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"user@yopmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"fcm_token\": \"\",\r\n\t\"platform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"description": "android or iOS",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\":\"user@gmail.com\",\r\n    \"password\":\"123456789\",\r\n    \"fcm_token\": \"\",\r\n\t\"platform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:28:54 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:28:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Logged in successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 3,\n            \"role_id\": 2,\n            \"name\": \"user\",\n            \"email\": \"user@yopmail.com\",\n            \"country_code\": \"+91\",\n            \"phone_number\": \"123456789\",\n            \"is_complete_profile\": 0\n        },\n        \"token\": \"3|c6MZWttq0ZJ489H2BNocwzLBPrIfQ6gyknyOQ6CDc8be23f6\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Social  login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// 0-Email, 1-Google, 2-Facebook\r",
+									"// email - if get from social then pass it"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if(pm.response.code===200){\r",
+									"    pm.collectionVariables.set('authtoken',pm.response.json().result.token)\r",
+									"}\r",
+									"\r",
+									"// platform - android or iOS"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"description": "android or iOS",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"login_type\": 1,\r\n    \"social_id\": \"123asd\",\r\n    \"fcm_token\": \"\",\r\n    \"platform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/social-login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social-login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Social  login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"description": "android or iOS",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"login_type\": 1,\r\n    \"social_id\": \"123asd\",\r\n    \"fcm_token\": \"\",\r\n    \"platform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/social-login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"social-login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:28:54 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:28:54 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Logged in successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 2,\n            \"role_id\": 2,\n            \"name\": \"User\",\n            \"email\": \"user@gmail.com\",\n            \"phone_number\": null,\n            \"is_complete_profile\": 1\n        },\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNWJjMjliZGFiNTQ0ZWNmM2ZiNTI1ZjEyYTNjYTA4OTA4NDgzOWM3NWJkNjYzMTEzODg4YjNiOWIxMGUxMWVjOGMxY2U4MGRmOGFkMTY3ODMiLCJpYXQiOjE3MTEwMDYxMzQuNzUzMzY0LCJuYmYiOjE3MTEwMDYxMzQuNzUzMzY2LCJleHAiOjE3NDI1NDIxMzQuNzM2NDg2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.h5q3op5aCJDSyfB113RV5-NIGCrqlm35KF2oQgJ6zHAAhJ10n3p7QdVNdkagpw49SXoAzsTZWt4bHqz8c14tr7qULWRnUzlrSOTfGkMbFS-8fI0ftBgfR05bgdfMwqzzxl5WXrZ6L9Gt5-PnaWf96vl303qOobUqnmURABgI8Bc5JaR7f7RLDujlGE48DWDi3dnKgj2bXfKzOFrd5idSWZkVVZMIqZEMtIhXJ8_DmNYGaTS1flZ3h5vHd_LCJR-PwNNdiVjP8kC_HVNm3zGGt9m6qTX2MRKOWE1B3Gs4EUj7bvl-Gpz31AfdylDplt5IXB_ed7KIee0dwQ9ipg4OxaS2_L_hglQ2SpkCXC0NKta3UZuUxWnVf9fcIHSpKnAG2BTvo5cmgbjwPCfhv20DJ0Qc4YOAnJpURNlCB2qB4loUCUrTIhAYwFRgF5QW7Qddt3MAKINDF5Rqp1lE51I6jPVtJfmnQD6ZcEer_Vq8iASiD9m2vMOTwoyUbfDZz3Vdp9nqwod_sfZGTDgSFGTn2lE7-lO83FYWvRrIO9p6pZc9R1wb52u7H_yYFXRNflimH20tfsN95CxVZieNQLrkPD7RIgu_3qS6VncBQkW1XPeeCXLzBfBqpyGVeYKJ1OAvpNmWfRrB782IuBNS5oaGAhDAoWbYeZVtDLN5qSdflu8\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@yopmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/forgot-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Forgot password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user@yopmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/forgot-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"forgot-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:29:37 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:29:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Code sent on your email, Please check your email\",\n    \"result\": 304971\n}"
+						}
+					]
+				},
+				{
+					"name": "Resend code",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/resend-code",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resend-code"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resend code",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"user@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/resend-code",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resend-code"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:32:35 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:32:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Code has been resend successfully\",\n    \"result\": 215743\n}"
+						}
+					]
+				},
+				{
+					"name": "Rreset password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"304971\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Rreset password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"304971\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reset-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reset-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:23 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Password has been reset successfully, You can now login\",\n    \"result\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"platform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"platform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:29 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:29 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Logged out successfully\",\n    \"result\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Check email verified",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/check-email-verified",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"check-email-verified"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Check email verified",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/check-email-verified",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"check-email-verified"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:53 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:31:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Your email is not verified, Please verify first.\",\n    \"result\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Resend verification link",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/resend-verification-link",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"resend-verification-link"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Resend verification link",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/resend-verification-link",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"resend-verification-link"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:32:04 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:32:04 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 0,\n    \"message\": \"Your e-mail is already verified.\",\n    \"result\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "url",
+									"value": "http://localhost:8080/tym/public/email/verify/2?expires=1582792536&signature=3e8657aa02ba61ab0e1f654bd272f2d0014f8d18f2fa4c92ceec4c5614c87277",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/verification",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"plateform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/delete-account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"delete-account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User profile",
+			"item": [
+				{
+					"name": "Complete profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//email can't be editable"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/complete-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"complete-profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Complete profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/complete-profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"complete-profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:41 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Profile details has been saved successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 2,\n            \"role_id\": 2,\n            \"name\": \"CK\",\n            \"email\": \"user@gmail.com\",\n            \"phone_number\": \"123456789\",\n            \"is_complete_profile\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:50 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Profile details is found\",\n    \"result\": {\n        \"user\": {\n            \"id\": 2,\n            \"role_id\": 2,\n            \"name\": \"CK\",\n            \"email\": \"user@gmail.com\",\n            \"phone_number\": \"123456789\",\n            \"is_complete_profile\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update profile",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// email can't be editable\r",
+									"// If you want to add or update profile photo then pass `photo` parameter in string. First you need to call `upload-profile-picture` API."
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/update-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"update-profile"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update profile",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"CK\",\r\n    \"email\": \"ckk@gmail.com\",\r\n    \"password\": \"123456789\",\r\n    \"country_code\": 91,\r\n    \"phone_number\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/update-profile",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"update-profile"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:59 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:36:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Profile details has been saved successfully\",\n    \"result\": {\n        \"user\": {\n            \"id\": 2,\n            \"role_id\": 2,\n            \"name\": \"CK\",\n            \"email\": \"user@gmail.com\",\n            \"phone_number\": \"123456789\",\n            \"is_complete_profile\": 1\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Upload profile picture",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// This API is for upload photo, it will not update photo in the user. I you want to update profile photo then please pass `photo` param in update or complete profile API which is give in this API response.\r",
+									"/*\r",
+									"This API return this type of response\r",
+									"{\r",
+									"    \"status\": 200,\r",
+									"    \"message\": \"\",\r",
+									"    \"result\": \"Img-2022123004313996.png\"\r",
+									"}\r",
+									" */"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/chetan/Downloads/Img-2024031411195157.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/upload-profile-picture",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"upload-profile-picture"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Upload profile picture",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/chetan/Downloads/Img-2024031411195157.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/upload-profile-picture",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"upload-profile-picture"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:37:42 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:37:42 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"\",\n    \"result\": \"Img-2024032107413742.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"current_password\": \"123456789\",\r\n\t\"password\":\"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"current_password\": \"123456789\",\r\n\t\"password\":\"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/change-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:38:03 GMT"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 21 Mar 2024 07:38:03 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Password has been changed successfully\",\n    \"result\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authtoken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Language",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"plateform\": \"android\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/delete-account",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"delete-account"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete account",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "AppVersion",
+										"value": "1.0",
+										"type": "text"
+									},
+									{
+										"key": "Platform",
+										"value": "android",
+										"type": "text"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Language",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"fcm_token\": \"\",\r\n\t\"plateform\": \"android\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/delete-account",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"delete-account"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 18 Feb 2025 07:26:19 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.56 (Win64) OpenSSL/1.1.1t PHP/8.2.4"
+								},
+								{
+									"key": "Vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.4"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=99"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": 200,\n    \"message\": \"Your account has been deleted!\",\n    \"result\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Masters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/masters",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"masters"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Masters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/masters",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"masters"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:46:47 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:46:47 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Masters found\",\n    \"result\": {\n        \"countries\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authtoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page\": 1,\r\n    \"per_page\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notifications",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notifications"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Notifications",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page\": 1,\r\n    \"per_page\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/notifications",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"notifications"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:39:42 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:39:42 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Notification list\",\n     \"result\": [\n        {\n            \"id\": 1,\n            \"type\": 1,\n            \"text\": \"Notiticationtext\",\n            \"redirect_on\": 1,\n            \"created_at\": \"2024-03-21 12:23:45\"\n        },\n        {\n            \"id\": 2,\n            \"type\": 2,\n            \"text\": \"Notiticationtext\",\n            \"redirect_on\": null,\n            \"created_at\": \"2024-03-21 12:26:45\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Notifications clear",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authtoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page\": 1,\r\n    \"per_page\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/notifications/clear",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"notifications",
+						"clear"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Notifications clear",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"page\": 1,\r\n    \"per_page\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/notifications/clear",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"notifications",
+								"clear"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:40:16 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:40:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Notification has been cleared successfully\",\n    \"result\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Contact",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{authtoken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"subject\":\"test\",\r\n\t\"message\":\"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/contact",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"contact"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Contact",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"subject\":\"test\",\r\n\t\"message\":\"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contact",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contact"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:08 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:08 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"Enquiry has been sent successfully\",\n    \"result\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "Terms conditions",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/terms-conditions",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"terms-conditions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Terms conditions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/terms-conditions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"terms-conditions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:13 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"\",\n    \"result\": \"http://127.0.0.1:8000/api/view/terms-conditions?mobile=1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "About us",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/about-us",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"about-us"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "About us",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/about-us",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"about-us"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:16 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"\",\n    \"result\": \"http://127.0.0.1:8000/api/view/about?mobile=1\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Privacy policy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AppVersion",
+						"value": "1.0",
+						"type": "text"
+					},
+					{
+						"key": "Platform",
+						"value": "android",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/privacy-policy",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"privacy-policy"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Privacy policy",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "AppVersion",
+								"value": "1.0",
+								"type": "text"
+							},
+							{
+								"key": "Platform",
+								"value": "android",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/privacy-policy",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"privacy-policy"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "127.0.0.1:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:18 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Mar 2024 07:38:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/8.2.4"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "57"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": 200,\n    \"message\": \"\",\n    \"result\": \"http://127.0.0.1:8000/api/view/privacy-policy?mobile=1\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "authtoken",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

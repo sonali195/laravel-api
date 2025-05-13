@@ -1,0 +1,18 @@
+{
+    "editor.formatOnSave": true,
+    "[blade]": {
+        "editor.formatOnSave": false
+    },
+    "[javascript]": {
+        "editor.formatOnSave": false
+    },
+    "[css]": {
+        "editor.formatOnSave": false
+    },
+    "cSpell.words": [
+        "A'maal",
+        "arbian",
+        "travelguide",
+        "Ziyarat"
+    ]
+}
